@@ -1,0 +1,135 @@
+ body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+		color:green;
+		background-color: #C8D9A7;
+      }
+      
+#status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+	  
+#settings{
+
+	width: 450px;
+	text-align:center;
+
+}
+
+#info{
+	margin:0 auto;
+}
+
+.btnStart {
+
+	background-color:#1fd950;
+	-moz-border-radius:33px;
+	-webkit-border-radius:33px;
+	border-radius:33px;
+	border:2px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:21px;
+	font-weight:bold;
+	padding:21px 31px;
+	text-decoration:none;
+	text-shadow:1px 1px 12px #2f6627;
+	
+	-webkit-transition: background-color 0.8s ease;
+	-webkit-transition: border 0.4s ease;
+	
+}
+.btnStart:hover {
+	background-color: #8CFF00;
+	border:10px solid #18ab29;
+	
+}
+.btnStart:active {
+	position:relative;
+	top:1px;
+}
+
+
+.myButton {
+	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
+	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+	box-shadow: 0px 1px 0px 0px #fff6af;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+	background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#ffec64;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+	background-color:#ffab23;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
+.content {
+    height: 0px;
+    overflow: hidden;
+    background-color: white;
+
+}
+.hoverDiv{
+    	
+    margin: 20px;
+    min-height: 30px;	
+}
+
+
+
+#progressBar {
+   width: 400px;
+    height: 22px;
+    border: 1px solid #111;
+    background-color: #292929;
+}
+
+#progressBar div {
+    height: 100%;
+    color: #fff;
+    text-align: right;
+    line-height: 22px; /*same as #progressBar height if we want text middle aligned*/
+    width: 0;
+	background-image: url(icons/pbar-ani.gif);
+    
+}
+
+

@@ -2,14 +2,14 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Atomic Internet Speed Test",
+  "description": "This extension will test the users internet speed",
   "version": "1.0",
 
   "browser_action": {
     "default_icon": "icons/icon2.png",
     "default_popup": "popup.html",
-    "default_title": "Test Internet Speed NOW!"
+    "default_title": "Atomic Internet Speed Test"
   },
   "permissions": [
     "activeTab",

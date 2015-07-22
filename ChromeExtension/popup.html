@@ -1,33 +1,42 @@
 <!doctype html>
 
 <html>
-  <head>
+ <head>
     <script src="jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="theme.css">
     <script src="popup.js"></script>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
-
-    <script src="popup.js"></script>
-  </head>
+    <title>Atomic Internet Speed Test</title>
+ </head>
 
   <body>
-    <div id="status"></div>
-    <h1 id="progress">JavaScript is turned off, or your browser is realllllly slow</h1>
-    <button style="width:150px" id="btnStart" type="button">Start Test</button>
-    
   
+<div id="info">
+    <div id="status"></div>
+	
+    <p id="progress">
+	
+	<button class="btnStart" type="button">START TEST</button>
+	
+	</p>
+	
+</div>
+
+<div class="hoverDiv"><div class="myButton">Settings</div>
+	
+	
+		<div class ="content" id="settings">
+			Click to Expand!</br></br>
+            Faster Test<input type="range" id="sustainTime" min="1" max="7" value="4"> More Accurate Test<br /><br />
+            <input type="checkbox" id="testServerEnabled" checked="checked">Find Test Server<br />
+            <input type="checkbox" id="userInfoEnabled" checked="checked">Find User Info<br />
+            <input type="checkbox" id="latencyTestEnabled" checked="checked">Do Latency Test<br />
+            <input type="checkbox" id="uploadTestEnabled" checked="checked">Do Upload Test<br />
+            <input type="checkbox" id="progress.enabled" checked="checked">Show Progress<br />
+            <input type="checkbox" id="progress.verbose" checked="checked">Verbose Progress<br />
+		</div>
+	
+</div>
+    
 
   </body>
 </html>
