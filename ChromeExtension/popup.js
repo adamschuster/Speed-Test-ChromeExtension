@@ -63,7 +63,7 @@ var sizeList = [downloadSize0, downloadSize1, downloadSize2, downloadSize3, down
  
 function startTest(){ 
     var oProgress = document.getElementById("progress");
-    oProgress.innerHTML = "<div id='progressBar'><div></div></div></br>" + "Test in progress, please wait... </br>" + "<img src='/icons/oloader.gif'>";
+    oProgress.innerHTML = "<div id='progressBar' style='width:100%'><div></div></div></br>" + "Test in progress, please wait... </br>" + "<div class='loader'>Loading...</div>";
     window.setTimeout(MeasureConnectionSpeed, 1);
 }
  
@@ -75,8 +75,7 @@ function MeasureConnectionSpeed() {
        var numberofLoaded = 0;
        var step = 100/numberofImages;            
        var startTime, endTime;   
-       var totalSize = 0;
-	   
+       var totalSize = 0;	   
 	   var position = 0;
                
                
@@ -89,11 +88,6 @@ function MeasureConnectionSpeed() {
 			
 	  ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
 	  
-	  //endTime = (new Date()).getTime();
-	  
-	  
-      //totalSize = iterateImages(numberofImages, totalSize, step, sizeList, imageList, oProgress);
-      //showResults(startTime, endTime, totalSize, oProgress);
 }
 
 
@@ -109,14 +103,14 @@ function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeLi
 		
 			success: function(){
 				console.log("PROGRESS  " + step*(position+1));
-				console.log("SUCCESSFULLY LOADED" + newimage + " of size: " + sizeList[position]);	
+				console.log("SUCCESSFULLY LOADED: " + newimage + " of size: " + sizeList[position]);	
 				numberofLoaded++;
 				console.log("IMAGES LOADED: " + numberofLoaded + " OUT OF " + numberofImages)
 				totalSize += sizeList[position];				
 				console.log("BYTES DOWNLOADED: " + totalSize);
 				position++;
 				
-				progress((step*(position)).toFixed(1), $('#progressBar'));
+				progress((step*(position)).toFixed(1), $('#progressBar'));				
 				
 				if(numberofLoaded < numberofImages){					
 					ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
@@ -132,19 +126,34 @@ function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeLi
 			
 			error: function(){
 				console.log("ERROR");
-				oProgress.innerHTML = "Error encountered, check internet connection or try again";
+				oProgress.innerHTML = "Error encountered, check internet connection or try again with lower test sensitivity <br />" + "<img src='icons/error.png' height='45' width='45'>";
 			}		
 	});	
-}
-
- 
+} 
  
 function progress(percent, $element) {
     var progressBarWidth = percent * $element.width() / 100;
     $element.find('div').animate({ width: progressBarWidth }, 500).html(percent + "% ");
 }
+
  
+function showResults(startTime, endTime, totalSize, oProgress) {
+        var duration = (endTime - startTime) / 1000;
+        var bitsLoaded = totalSize * 8;
+        var speedBps = (bitsLoaded / duration).toFixed(2);
+        var speedKbps = (speedBps / 1024).toFixed(2);
+        var speedMbps = (speedKbps / 1024).toFixed(2);
+        oProgress.innerHTML = "Your connection speed is: <br />" +
+           speedBps + " bps<br />"   +
+           speedKbps + " kbps<br />" +
+           speedMbps + " Mbps<br />" +
+           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;
+     
+    console.log(totalSize);
+}
  
+ /*
 function log(list, index, step){
        
       var status_percent = (step * (index+1));
@@ -192,20 +201,4 @@ return totalSize;
 //console.log(totalSize);
 //showResults();
 }
- 
- 
-function showResults(startTime, endTime, totalSize, oProgress) {
-        var duration = (endTime - startTime) / 1000;
-        var bitsLoaded = totalSize * 8;
-        var speedBps = (bitsLoaded / duration).toFixed(2);
-        var speedKbps = (speedBps / 1024).toFixed(2);
-        var speedMbps = (speedKbps / 1024).toFixed(2);
-        oProgress.innerHTML = "Your connection speed is: <br />" +
-           speedBps + " bps<br />"   +
-           speedKbps + " kbps<br />" +
-           speedMbps + " Mbps<br />" +
-           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;
-     
-    console.log(totalSize);
-}
+ */
