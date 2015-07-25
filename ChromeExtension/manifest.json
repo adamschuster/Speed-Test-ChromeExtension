@@ -14,7 +14,7 @@
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
-    "http://speedof.me/api/*",
-    "http://speedof.me/api/core.html/"
+	"https://*/",
+	"http://*/"
     ]
 }

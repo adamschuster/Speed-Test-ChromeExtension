@@ -5,7 +5,7 @@ $(document).ready(function(){
            startTest();
           });
 
-        $('.hoverDiv').mouseenter(function () {
+      $('.hoverDiv').mouseenter(function () {
               $(this).find('.content').animate({
                    height: '25px'
                }, 200);
@@ -19,41 +19,51 @@ $(document).ready(function(){
            height: $(this).find('.content')[0].scrollHeight
        }, 200);
      });
-               
+	 
 });
  
  
-var imageAddr0 = "https://upload.wikimedia.org/wikipedia/commons/e/ec/68thNY_Gettysburg.png";
-var downloadSize0 = 102428;
+var imageAddr0 = "http://www.byui.edu/images/agriculture-life-sciences/flower.jpg";
+var downloadSize0 = 29746; //bytes
  
-var imageAddr1 = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Austroboletus_occidentalisRH.jpg/1280px-Austroboletus_occidentalisRH.jpg";
-var downloadSize1 = 348495;
+var imageAddr1 = "https://upload.wikimedia.org/wikipedia/commons/e/ec/68thNY_Gettysburg.png";
+var downloadSize1 = 102428;
+
+var imageAddr2 = "http://pureflorist.com/download/pureflorist_com/Tulips-flowers-33551630-1024-768.jpg";
+var downloadSize2 = 133908;
+
+var imageAddr3 = "http://bestinspired.com/wp-content/uploads/2015/04/beautiful-tulip-flowers-hd-wallpapers-cool-desktop-background-photographs-widescreen2.jpg";
+var downloadSize3 = 235876;
  
-var imageAddr2 = "https://upload.wikimedia.org/wikipedia/commons/1/1e/Allied_Invasion_Force.jpg";
-var downloadSize2 = 574331; //bytes
+var imageAddr4 = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Austroboletus_occidentalisRH.jpg/1280px-Austroboletus_occidentalisRH.jpg";
+var downloadSize4 = 348495;
  
-var imageAddr3 = "http://wallfoy.com/wp-content/uploads/2015/01/4k-Ultra-HD_00113.jpg";
-var downloadSize3 = 1509825;
+var imageAddr5 = "https://upload.wikimedia.org/wikipedia/commons/1/1e/Allied_Invasion_Force.jpg";
+var downloadSize5 = 574331; 
+
+var imageAddr6 = "http://www.revitalizenotmilitarize.org/wp-content/uploads/2013/10/FlowerPower_v1.png";
+var downloadSize6 = 1049930;
  
-var imageAddr4 = "http://axeetech.com/wp-content/uploads/2014/10/alien_orbit7680x4320.jpg";
-var downloadSize4 = 6967482;
+var imageAddr7 = "http://wallfoy.com/wp-content/uploads/2015/01/4k-Ultra-HD_00113.jpg";
+var downloadSize7 = 1509825;
  
-//var imageAddr3 = "http://axeetech.com/wp-content/uploads/2014/09/4k-wallpaper.jpg";
-//var downloadSize3 = 2112829;
+var imageAddr8 = "http://www.freshorigins.com/wp-content/uploads/2013/05/good21-copy.jpg";
+var downloadSize8 = 2262204;
+
+var imageAddr9 = "http://cliparts.co/cliparts/6Tr/oqg/6Troqg6pc.png";
+var downloadSize9 = 5039029;
  
-//var imageAddr4 = "http://interfacelift.com/wallpaper/Ddf418b2/03245_londonfromtheshard_3840x2160.jpg";
-//var downloadSize4 = 7699463;
- 
-var imageList = [imageAddr0, imageAddr1, imageAddr2, imageAddr3, imageAddr4];
-//console.log(imageList[0]);
- 
-var sizeList = [downloadSize0, downloadSize1, downloadSize2, downloadSize3, downloadSize4];
+var imageAddr10 = "http://axeetech.com/wp-content/uploads/2014/10/alien_orbit7680x4320.jpg";
+var downloadSize10 = 6967482;
  
  
-function startTest(){
+var imageList = [imageAddr0, imageAddr1, imageAddr2, imageAddr3, imageAddr4, imageAddr5, imageAddr6, imageAddr7, imageAddr8, imageAddr9, imageAddr10]; 
+var sizeList = [downloadSize0, downloadSize1, downloadSize2, downloadSize3, downloadSize4, downloadSize5, downloadSize6, downloadSize7, downloadSize8, downloadSize9, downloadSize10];
  
+ 
+function startTest(){ 
     var oProgress = document.getElementById("progress");
-    oProgress.innerHTML = "<div id='progressBar'><div></div></div></br>" + "Test in progress, please wait...";
+    oProgress.innerHTML = "<div id='progressBar'><div></div></div></br>" + "Test in progress, please wait... </br>" + "<img src='/icons/oloader.gif'>";
     window.setTimeout(MeasureConnectionSpeed, 1);
 }
  
@@ -62,11 +72,12 @@ function MeasureConnectionSpeed() {
  
        var oProgress = document.getElementById("progress");
        var numberofImages = document.getElementById("sustainTime").value;
-       //console.log(numberofImages);
        var numberofLoaded = 0;
        var step = 100/numberofImages;            
        var startTime, endTime;   
        var totalSize = 0;
+	   
+	   var position = 0;
                
                
       startTime = (new Date()).getTime();
@@ -74,49 +85,91 @@ function MeasureConnectionSpeed() {
        var cacheBuster = "?nnn=" + startTime;
             for ( var i = 0; i < numberofImages; i++){
                   imageList[i] = imageList[i] + cacheBuster;
-             }             
-               
-      totalSize = iterateImages(numberofImages, totalSize, step, sizeList, imageList, oProgress);
-               
-      endTime = (new Date()).getTime();
-                               
-      //externalLoadFunction.onload = showResults(startTime, endTime, totalSize, oProgress);
+            } 
+			
+	  ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
+	  
+	  //endTime = (new Date()).getTime();
+	  
+	  
+      //totalSize = iterateImages(numberofImages, totalSize, step, sizeList, imageList, oProgress);
+      //showResults(startTime, endTime, totalSize, oProgress);
 }
+
+
+function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime){
+
+		var newimage = imageList[position];
+		
+		console.log("PREPARING TO LOAD: " + newimage);
+	
+		$.ajax({
+			type: "GET",		
+			url: newimage,
+		
+			success: function(){
+				console.log("PROGRESS  " + step*(position+1));
+				console.log("SUCCESSFULLY LOADED" + newimage + " of size: " + sizeList[position]);	
+				numberofLoaded++;
+				console.log("IMAGES LOADED: " + numberofLoaded + " OUT OF " + numberofImages)
+				totalSize += sizeList[position];				
+				console.log("BYTES DOWNLOADED: " + totalSize);
+				position++;
+				
+				progress((step*(position)).toFixed(1), $('#progressBar'));
+				
+				if(numberofLoaded < numberofImages){					
+					ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
+				}
+				else{
+					endTime = (new Date()).getTime();
+						setTimeout(function(){
+							showResults(startTime, endTime, totalSize, oProgress);
+						}, 1200);
+				}
+			},
+			
+			
+			error: function(){
+				console.log("ERROR");
+				oProgress.innerHTML = "Error encountered, check internet connection or try again";
+			}		
+	});	
+}
+
  
  
 function progress(percent, $element) {
- 
-    console.log("SHIT");
- 
     var progressBarWidth = percent * $element.width() / 100;
     $element.find('div').animate({ width: progressBarWidth }, 500).html(percent + "% ");
 }
  
  
 function log(list, index, step){
-                               
+       
       var status_percent = (step * (index+1));
-      console.log(step + "    " + index);
-      console.log(status_percent);
+      //console.log(step + "    " + index);
+      //console.log(status_percent);
       progress(status_percent, $('#progressBar'));
 
 }
  
 function externalLoadFunction (newimages, imageList, i, step){
-                                               
-newimages.onload=function(){
-          console.log(newimages);
+        
+		newimages.onload=function(){
+         console.log(newimages);
          log(imageList, i, step);
- }
+		}
 
- newimages.onerror = function (err, msg) {
- oProgress.innerHTML = "Error encountered, check internet connection or try again";
-     }
+		newimages.onerror = function (err, msg) {
+		oProgress.innerHTML = "Error encountered, check internet connection or try again";
+		}
 }
- 
-               
+
 function iterateImages(numberofImages, totalSize, step, sizeList, imageList, oProgress){
-                for ( var i = 0; i < numberofImages; i++){
+                
+				
+	for ( var i = 0; i < numberofImages; i++){
                
          //var newimages=[];
          //newimages[i]=new Image();
@@ -126,23 +179,18 @@ function iterateImages(numberofImages, totalSize, step, sizeList, imageList, oPr
         var newimages = new Image();
 
          newimages.src = imageList[i];
-                                               
+ 
          externalLoadFunction(newimages,imageList, i, step);
-                                               
-        /*newimages[i].onload=function(){
-        log(imageList, i, step);                                                   
-       }
-   
-        newimages[i].onerror = function (err, msg) {
-        oProgress.innerHTML = "Error encountered, check internet connection or try again";
-       }*/
 
      //console.log(newimages[i]);
   
          totalSize += sizeList[i];
+		 
+		 //console.log(totalSize);
       }
 return totalSize;
- //showResults();
+//console.log(totalSize);
+//showResults();
 }
  
  
@@ -157,7 +205,7 @@ function showResults(startTime, endTime, totalSize, oProgress) {
            speedKbps + " kbps<br />" +
            speedMbps + " Mbps<br />" +
            "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-                                   "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;
-                                  
-                                   console.log(totalSize);
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;
+     
+    console.log(totalSize);
 }
