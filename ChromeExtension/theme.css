@@ -2,12 +2,13 @@
 		font-family: 'Oswald', sans-serif;
         /*font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;*/
         font-size: 100%;
-		color:green;
+		color: white /*#1947D1*/;
 		/*background-image: url(icons/wallpaper.jpg);*/
-		background-color: #C8D9A7;
+		background-color: #6685E0 /*#C8D9A7*/;
       }
 	  
 #title{
+	color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	font-size: 200%;
 	text-align: center;
 	
@@ -112,7 +113,7 @@
 .content {
     height: 0px;
     overflow: hidden;
-    background-color: white;
+    background-color: #8099E6;
 
 }
 .hoverDiv{
@@ -183,7 +184,7 @@
     box-shadow: 0 2.5em 0 -1.3em orange;
   }
   40% {
-    box-shadow: 0 2.5em 0 0 green;
+    box-shadow: 0 2.5em 0 0 #1947D1;
   }
 }
 @keyframes load7 {
@@ -193,6 +194,9 @@
     box-shadow: 0 2.5em 0 -1.3em orange;
   }
   40% {
-    box-shadow: 0 2.5em 0 0 green;
+    box-shadow: 0 2.5em 0 0 #1947D1;
   }
+}
+}
+}
 }
