@@ -1,9 +1,18 @@
 $(document).ready(function(){
    
-    $('.btnStart1').click(function()
+    $('.btnStart').click(function()
          {
-           startTest();
+				var reading = document.getElementById("reading");
+				var readingType = reading.options[reading.selectedIndex].value;
+				console.log(readingType);
+			
+				var numberofImages = document.getElementById("sustainTime").value;
+				console.log(numberofImages);
+			 
+           startTest(readingType, numberofImages);
           });
+		  
+		 
 
       /*$('.hoverDiv').mouseenter(function () {
               $(this).find('.content').animate({
@@ -61,25 +70,31 @@ var imageList = [imageAddr0, imageAddr1, imageAddr2, imageAddr3, imageAddr4, ima
 var sizeList = [downloadSize0, downloadSize1, downloadSize2, downloadSize3, downloadSize4, downloadSize5, downloadSize6, downloadSize7, downloadSize8, downloadSize9, downloadSize10];
  
  
-function startTest(){ 
+function startTest(readingType, numberofImages){ 
     var oProgress = document.getElementById("progress");
     oProgress.innerHTML = "<div id='progressBar' style='width:100%'><div></div></div></br>" + "Test in progress, please wait... </br>" + "<div class='loader'>Loading...</div>";
-    window.setTimeout(MeasureConnectionSpeed, 1);
+	setTimeout(function(){
+		MeasureConnectionSpeed(readingType, numberofImages);
+	}, 1);
+    //window.setTimeout(MeasureConnectionSpeed, 1);
 }
  
  
-function MeasureConnectionSpeed() {
+function MeasureConnectionSpeed(readingType, numberofImages) {
 
-var oOptions = document.getElementById("menuOptions");
-oOptions.innerHTML = "";
-
-		var reading = document.getElementById("reading");
-		var readingType = reading.options[reading.selectedIndex].value;
+		var oOptions = document.getElementById("menuOptions");
+		oOptions.innerHTML = "";
 		
 		console.log(readingType);
+		console.log(numberofImages);
+		
+		//var reading = document.getElementById("reading");
+		//var readingType = reading.options[reading.selectedIndex].value;
+		
+		//console.log(readingType);
  
        var oProgress = document.getElementById("progress");
-       var numberofImages = document.getElementById("sustainTime").value;
+       //var numberofImages = document.getElementById("sustainTime").value;
        var numberofLoaded = 0;
        var step = 100/numberofImages;            
        var startTime, endTime;   
