@@ -1,11 +1,11 @@
 $(document).ready(function(){
    
-    $('.btnStart').click(function()
+    $('.btnStart1').click(function()
          {
            startTest();
           });
 
-      $('.hoverDiv').mouseenter(function () {
+      /*$('.hoverDiv').mouseenter(function () {
               $(this).find('.content').animate({
                    height: '25px'
                }, 200);
@@ -18,7 +18,7 @@ $(document).ready(function(){
        $(this).find('.content').animate({
            height: $(this).find('.content')[0].scrollHeight
        }, 200);
-     });
+     });*/
 	 
 });
  
