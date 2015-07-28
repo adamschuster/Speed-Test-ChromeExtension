@@ -69,6 +69,14 @@ function startTest(){
  
  
 function MeasureConnectionSpeed() {
+
+var oOptions = document.getElementById("menuOptions");
+oOptions.innerHTML = "";
+
+		var reading = document.getElementById("reading");
+		var readingType = reading.options[reading.selectedIndex].value;
+		
+		console.log(readingType);
  
        var oProgress = document.getElementById("progress");
        var numberofImages = document.getElementById("sustainTime").value;
@@ -86,12 +94,12 @@ function MeasureConnectionSpeed() {
                   imageList[i] = imageList[i] + cacheBuster;
             } 
 			
-	  ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
+	  ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime, readingType);
 	  
 }
 
 
-function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime){
+function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime, readingType){
 
 		var newimage = imageList[position];
 		
@@ -113,12 +121,12 @@ function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeLi
 				progress((step*(position)).toFixed(1), $('#progressBar'));				
 				
 				if(numberofLoaded < numberofImages){					
-					ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime);
+					ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeList, imageList, oProgress, position, startTime, endTime, readingType);
 				}
 				else{
 					endTime = (new Date()).getTime();
 						setTimeout(function(){
-							showResults(startTime, endTime, totalSize, oProgress);
+							showResults(startTime, endTime, totalSize, oProgress, readingType);
 						}, 1200);
 				}
 			},
@@ -137,68 +145,49 @@ function progress(percent, $element) {
 }
 
  
-function showResults(startTime, endTime, totalSize, oProgress) {
+function showResults(startTime, endTime, totalSize, oProgress, readingType) {
+console.log(readingType);
+
+
         var duration = (endTime - startTime) / 1000;
         var bitsLoaded = totalSize * 8;
         var speedBps = (bitsLoaded / duration).toFixed(2);
         var speedKbps = (speedBps / 1024).toFixed(2);
         var speedMbps = (speedKbps / 1024).toFixed(2);
-        oProgress.innerHTML = "Your connection speed is: <br />" +
+		
+		
+		if(readingType == 0){
+			oProgress.innerHTML = "Your connection speed is: <br />" +
+           speedKbps + " Kilobits<br />" +
+		   speedKbps/8 + " KiloBYTES<br />" +
+           speedMbps + " Megabits<br />" +
+		   speedMbps/8 + " MegaBYTES<br />" +
+           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2);
+		}
+		else{
+		oProgress.innerHTML = "Your connection speed is: <p id='speed'></p>";
+		var oSpeed = document.getElementById("speed");
+		
+		if (readingType == 1) {
+			oSpeed.innerHTML = speedKbps + "Kilobits <br />";
+		}
+		if (readingType == 2) {
+			oSpeed.innerHTML = speedKbps/8 + "Kilobytes";
+		}
+		if (readingType == 3) {
+			oSpeed.innerHTML = speedMbps + "Megabits";
+		}
+		if(readingType == 4){
+			oSpeed.innerHTML = speedMbps/8 + "Megabytes";
+		}
+		}
+        /*oProgress.innerHTML = "Your connection speed is: <br />" +
            speedBps + " bps<br />"   +
            speedKbps + " kbps<br />" +
            speedMbps + " Mbps<br />" +
            "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;*/
      
     console.log(totalSize);
 }
- 
- /*
-function log(list, index, step){
-       
-      var status_percent = (step * (index+1));
-      //console.log(step + "    " + index);
-      //console.log(status_percent);
-      progress(status_percent, $('#progressBar'));
-
-}
- 
-function externalLoadFunction (newimages, imageList, i, step){
-        
-		newimages.onload=function(){
-         console.log(newimages);
-         log(imageList, i, step);
-		}
-
-		newimages.onerror = function (err, msg) {
-		oProgress.innerHTML = "Error encountered, check internet connection or try again";
-		}
-}
-
-function iterateImages(numberofImages, totalSize, step, sizeList, imageList, oProgress){
-                
-				
-	for ( var i = 0; i < numberofImages; i++){
-               
-         //var newimages=[];
-         //newimages[i]=new Image();
-         
-          //newimages[i].src = imageList[i];           
- 
-        var newimages = new Image();
-
-         newimages.src = imageList[i];
- 
-         externalLoadFunction(newimages,imageList, i, step);
-
-     //console.log(newimages[i]);
-  
-         totalSize += sizeList[i];
-		 
-		 //console.log(totalSize);
-      }
-return totalSize;
-//console.log(totalSize);
-//showResults();
-}
- */
