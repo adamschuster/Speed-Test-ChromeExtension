@@ -1,9 +1,12 @@
 $(document).ready(function(){
    
-    $('.btnStart').click(function()
+    $('.btn-big-red').click(function()
          {
-				var reading = document.getElementById("reading");
-				var readingType = reading.options[reading.selectedIndex].value;
+				//console.log($('input[name="view2"]:checked').val());
+				
+				//var reading = document.getElementById("reading");
+				var readingType = $('input[name="view2"]:checked').val()
+				
 				console.log(readingType);
 			
 				var numberofImages = document.getElementById("sustainTime").value;
@@ -88,10 +91,6 @@ function MeasureConnectionSpeed(readingType, numberofImages) {
 		console.log(readingType);
 		console.log(numberofImages);
 		
-		//var reading = document.getElementById("reading");
-		//var readingType = reading.options[reading.selectedIndex].value;
-		
-		//console.log(readingType);
  
        var oProgress = document.getElementById("progress");
        //var numberofImages = document.getElementById("sustainTime").value;
@@ -170,17 +169,30 @@ console.log(readingType);
         var speedKbps = (speedBps / 1024).toFixed(2);
         var speedMbps = (speedKbps / 1024).toFixed(2);
 		
-		
-		if(readingType == 0){
-			oProgress.innerHTML = "Your connection speed is: <br />" +
-           speedKbps + " Kilobits<br />" +
-		   speedKbps/8 + " KiloBYTES<br />" +
+		oProgress.innerHTML = "<p id='speed'></p>";
+		var oSpeed = document.getElementById("speed");
+		if(readingType == 1){
+			oSpeed.innerHTML = "Your connection speed is: <br /><br />" +
+           "<span style=font-weight:'bold'>" + speedKbps + "</span>" + " Kilobits<br />" +
+		   "<span style=font-weight:'bold'>" + speedKbps/8 + "</span>" + " KiloBYTES<br />" +
+           //speedMbps + " Megabits<br />" +
+		  // speedMbps/8 + " MegaBYTES<br />" +
+           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) + "<br />";
+		}
+		else if (readingType == 2){
+			oSpeed.innerHTML = "Your connection speed is: <br /><br />" +
+          // speedKbps + " Kilobits<br />" +
+		   //speedKbps/8 + " KiloBYTES<br />" +
            speedMbps + " Megabits<br />" +
 		   speedMbps/8 + " MegaBYTES<br />" +
            "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2);
+           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) + "<br />";
 		}
-		else{
+		
+		
+		
+		/*else{
 		oProgress.innerHTML = "Your connection speed is: <p id='speed'></p>";
 		var oSpeed = document.getElementById("speed");
 		
@@ -197,7 +209,7 @@ console.log(readingType);
 			oSpeed.innerHTML = speedMbps/8 + "Megabytes";
 		}
 		}
-        /*oProgress.innerHTML = "Your connection speed is: <br />" +
+        oProgress.innerHTML = "Your connection speed is: <br />" +
            speedBps + " bps<br />"   +
            speedKbps + " kbps<br />" +
            speedMbps + " Mbps<br />" +

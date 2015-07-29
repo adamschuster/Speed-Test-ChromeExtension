@@ -3,7 +3,7 @@
 <html>
  <head>
     <script src="jquery-1.11.3.min.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'> <!-- OSWALD font-->
+	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="theme.css">
     <script src="popup.js"></script>
     <title>Internet Speed Test</title>
@@ -16,10 +16,11 @@
 
 			<div id="status"></div>
 	
-					<div id="progress">
+	<div id="progress">
 	
 	<div class="btnWrapper">
-	<button class="btnStart" type="button">START TEST</button>
+	<!--<button class="btnStart" type="button">START TEST</button>-->
+	<a href="#" class="btn-big-red"><img src="icons/launcher.png" style="height:58px; width:58px;"></a>
 	</div>
 	
 	</div>
@@ -28,25 +29,21 @@
 
 <div id="menuOptions">
 
-	Faster Test<input type="range" id="sustainTime" min="1" max="11" value="2"> More Accurate Test<br />
+	
+	<span style="color:#7D0000">Fast</span> 
+	<input type="range" id="sustainTime" min="1" max="11" value="2"> 
+	<span style="color:#7D0000; ">Accurate</span><br /><br />
 				
-		<div class="switch switch-blue">
-			<input type="radio" class="switch-input" name="view2" value="week2" id="week2" checked>
+		<div class="switch switch-blue" id="reading">
+			<input type="radio" class="switch-input" name="view2" value="1" id="week2" checked>
 			<label for="week2" class="switch-label switch-label-off">Kb/s</label>
-			<input type="radio" class="switch-input" name="view2" value="month2" id="month2">
+			<input type="radio" class="switch-input" name="view2" value="2" id="month2">
 			<label for="month2" class="switch-label switch-label-on">Mb/s</label>
       <span class="switch-selection"></span>  	  
     </div>
 	
-	  <select id="reading">
-						<option value="0" selected="selected">ALL SPEEDS</option>
-						<option value="1">Kilobits</option>
-						<option value="2">Kilobytes</option>
-						<option value="3">Megabits</option>
-						<option value="4">Mebabytes</option>
-				</select>
-	  
-
+	<!--img src="/icons/logo.png" style="height:70px; width:70px;">-->
+	
 </div>
 
   </body>
