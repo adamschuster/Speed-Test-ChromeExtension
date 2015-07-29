@@ -118,6 +118,8 @@ function ajaxImageLoader(numberofImages, numberofLoaded, totalSize, step, sizeLi
 		var newimage = imageList[position];
 		
 		console.log("PREPARING TO LOAD: " + newimage);
+		
+		//$('#progress').prepend("LOADING " + position);
 	
 		$.ajax({
 			type: "GET",		
