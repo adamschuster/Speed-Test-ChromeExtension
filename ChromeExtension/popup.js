@@ -15,7 +15,11 @@ $(document).ready(function(){
            startTest(readingType, numberofImages);
           });
 		  
+		 $("#webButton").click(function()
+		 {
+				chrome.tabs.create({url: "http://www.rocketlaunchlabs.com"}); 
 		 
+		 });
 
       /*$('.hoverDiv').mouseenter(function () {
               $(this).find('.content').animate({
@@ -44,8 +48,8 @@ var downloadSize1 = 102428;
 var imageAddr2 = "http://pureflorist.com/download/pureflorist_com/Tulips-flowers-33551630-1024-768.jpg";
 var downloadSize2 = 133908;
 
-var imageAddr3 = "http://bestinspired.com/wp-content/uploads/2015/04/beautiful-tulip-flowers-hd-wallpapers-cool-desktop-background-photographs-widescreen2.jpg";
-var downloadSize3 = 235876;
+var imageAddr3 = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Nairo_Quintana%2C_Vuelta_al_Pais_Vasco_2013_%28cropped%29.jpg";
+var downloadSize3 = 229637;
  
 var imageAddr4 = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Austroboletus_occidentalisRH.jpg/1280px-Austroboletus_occidentalisRH.jpg";
 var downloadSize4 = 348495;
@@ -174,49 +178,23 @@ console.log(readingType);
 		oProgress.innerHTML = "<p id='speed'></p>";
 		var oSpeed = document.getElementById("speed");
 		if(readingType == 1){
-			oSpeed.innerHTML = "Your connection speed is: <br /><br />" +
-           "<span style=font-weight:'bold'>" + speedKbps + "</span>" + " Kilobits<br />" +
-		   "<span style=font-weight:'bold'>" + speedKbps/8 + "</span>" + " KiloBYTES<br />" +
-           //speedMbps + " Megabits<br />" +
-		  // speedMbps/8 + " MegaBYTES<br />" +
-           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) + "<br />";
+			oSpeed.innerHTML = "SUCCESS! Your connection speed is: <br /><br />" +
+           "<span class='resultsNum'>" + speedKbps.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>" + " KiloBytes/second<br />" +
+		   "<span class='resultsNum'>" + (speedKbps*8).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>" + " KiloBits/second<br />" +
+         
+           "Test Duration: <span class='resultsNum'>" + duration.toFixed(2) + "</span> seconds <br />" +
+           "Total Tested: <span class='resultsNum'>" + ((bitsLoaded*0.000125).toFixed(2)).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") +  "</span> Kb" + "<br />";
 		}
 		else if (readingType == 2){
-			oSpeed.innerHTML = "Your connection speed is: <br /><br />" +
-          // speedKbps + " Kilobits<br />" +
-		   //speedKbps/8 + " KiloBYTES<br />" +
-           speedMbps + " Megabits<br />" +
-		   speedMbps/8 + " MegaBYTES<br />" +
-           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) + "<br />";
+			oSpeed.innerHTML = "SUCCESS! Your connection speed is: <br /><br />" +
+         
+          "<span class='resultsNum'>" + speedMbps.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span> MegaBytes/second<br />" +
+		   "<span class='resultsNum'>" + (speedMbps*8).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span> MegaBits/second<br />" +
+           
+		   "Test Duration: " + "<span class='resultsNum'>" + duration.toFixed(2) + "</span> seconds <br />" +
+           "Total Tested " + "<span class='resultsNum'>" + ((bitsLoaded*0.000125).toFixed(2)).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span> Kb" +"<br />";
 		}
 		
-		
-		
-		/*else{
-		oProgress.innerHTML = "Your connection speed is: <p id='speed'></p>";
-		var oSpeed = document.getElementById("speed");
-		
-		if (readingType == 1) {
-			oSpeed.innerHTML = speedKbps + "Kilobits <br />";
-		}
-		if (readingType == 2) {
-			oSpeed.innerHTML = speedKbps/8 + "Kilobytes";
-		}
-		if (readingType == 3) {
-			oSpeed.innerHTML = speedMbps + "Megabits";
-		}
-		if(readingType == 4){
-			oSpeed.innerHTML = speedMbps/8 + "Megabytes";
-		}
-		}
-        oProgress.innerHTML = "Your connection speed is: <br />" +
-           speedBps + " bps<br />"   +
-           speedKbps + " kbps<br />" +
-           speedMbps + " Mbps<br />" +
-           "Test Duration: " + duration.toFixed(2) + " seconds <br />" +
-           "Total Downloaded Kb: " + (bitsLoaded*0.000125).toFixed(2) ;*/
-     
+		     
     console.log(totalSize);
 }

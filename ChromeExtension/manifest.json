@@ -7,9 +7,9 @@
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icons/icon4.png",
+    "default_icon": "icons/space.png",
     "default_popup": "popup.html",
-    "default_title": "Atomic Internet Speed Test"
+    "default_title": "Internet Speed Test"
   },
   "permissions": [
     "activeTab",

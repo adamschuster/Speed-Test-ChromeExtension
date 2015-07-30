@@ -8,15 +8,30 @@
       }
 	  
 #title{
-padding-bottom: 18px;
+	padding-bottom: 12px;
 	color: white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	font-size: 200%;
 	text-align: center;
 	
 }
 
+#webButton{
+	padding-bottom: 10px;
+}
+
+.settingsTitle{
+	color: white; 
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 #menuOptions{
 	width:350px;
+}
+
+.resultsNum{
+	color: #BF0000;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	font-size: 150%;
 }
 
 hr {
@@ -52,7 +67,7 @@ hr {
 
 #speed{
 
-text-align: left;
+text-align: center;
 }
 
 
