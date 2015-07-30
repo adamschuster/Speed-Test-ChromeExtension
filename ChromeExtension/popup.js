@@ -45,8 +45,8 @@ var downloadSize0 = 29746; //bytes
 var imageAddr1 = "https://upload.wikimedia.org/wikipedia/commons/e/ec/68thNY_Gettysburg.png";
 var downloadSize1 = 102428;
 
-var imageAddr2 = "http://pureflorist.com/download/pureflorist_com/Tulips-flowers-33551630-1024-768.jpg";
-var downloadSize2 = 133908;
+var imageAddr2 = "https://upload.wikimedia.org/wikipedia/commons/6/6a/Rojava_Kurdisch_kontrollierte_Gebiete.jpg";
+var downloadSize2 = 149254;
 
 var imageAddr3 = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Nairo_Quintana%2C_Vuelta_al_Pais_Vasco_2013_%28cropped%29.jpg";
 var downloadSize3 = 229637;
